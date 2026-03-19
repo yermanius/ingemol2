@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentación Estratégica INGEMOL S.A.</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --surface-2: #eef3f8;
+      --text: #162235;
+      --muted: #5d6c80;
+      --line: #d7e0ea;
+      --brand: #1d3f73;
+      --brand-2: #2f5f9a;
+      --brand-soft: #e9f0f8;
+      --accent: #6d8fb8;
+      --success: #1f6b4f;
+      --warning: #b26a1f;
+      --shadow: 0 12px 30px rgba(22, 34, 53, 0.08);
+      --radius: 22px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body { min-height: 100vh; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(245, 247, 250, 0.9);
+      border-bottom: 1px solid rgba(215, 224, 234, 0.9);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 2px solid rgba(255,255,255,0.85);
+      border-radius: 11px;
+      transform: rotate(45deg);
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-copy p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .nav button {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav button:hover,
+    .nav button.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 20px 64px;
+    }
+
+    .slide {
+      min-height: calc(100vh - 110px);
+      display: none;
+      align-items: center;
+      padding: 26px 0;
+    }
+
+    .slide.active { display: flex; }
+
+    .panel {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      border: 1px solid #d3deed;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    p.lead {
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.55;
+      color: #28384f;
+      max-width: 900px;
+      margin: 0;
+    }
+
+    .muted { color: var(--muted); }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .card strong,
+    .metric strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card p,
+    .metric p,
+    .note,
+    li {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #314359;
+      margin: 0;
+    }
+
+    .metric {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .metric .num {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--brand);
+      margin-bottom: 10px;
+    }
+
+    ul.clean {
+      margin: 14px 0 0;
+      padding-left: 20px;
+    }
+
+    ul.clean li + li { margin-top: 10px; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: white;
+      position: relative;
+    }
+
+    .step .tag {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .step h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 6px;
+      border-radius: 22px 22px 0 0;
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .table-like {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      margin-top: 22px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 0;
+    }
+
+    .row > div {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: white;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .row.header > div {
+      background: #edf4fb;
+      font-weight: 800;
+      color: var(--brand);
+    }
+
+    .row:last-child > div { border-bottom: none; }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .pill.low { background: #ecf7f1; color: var(--success); border-color: #cfe8da; }
+    .pill.mid { background: #fff5e8; color: var(--warning); border-color: #f0d9b7; }
+    .pill.high { background: #f7ebeb; color: #9c3131; border-color: #e7c8c8; }
+
+    .proposal {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .price-box {
+      background: linear-gradient(180deg, #17335b 0%, #1d3f73 100%);
+      color: white;
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .price-box h3,
+    .price-box p,
+    .price-box li { color: white; }
+
+    .price-box .cta {
+      margin-top: 18px;
+      display: inline-block;
+      background: white;
+      color: var(--brand);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-nav button {
+      border: none;
+      border-radius: 999px;
+      background: var(--brand);
+      color: white;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .slide-count {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 20px;
+      background: var(--surface-2);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    .hero-logo .wordmark {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-logo .wordmark strong {
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--brand);
+    }
+
+    .hero-logo .wordmark span {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .highlight {
+      color: var(--brand);
+    }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .grid-4, .timeline, .split, .proposal, .row {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav { justify-content: flex-start; }
+      .panel { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span>IN</span></div>
+        <div class="brand-copy">
+          <h1>INGEMOL S.A.</h1>
+          <p>Presentación ejecutiva · posicionamiento digital, SEO e IA</p>
+        </div>
+      </div>
+      <nav class="nav" id="nav"></nav>
+    </div>
+  </header>
+
+  <main id="slides">
+    <section class="slide active" data-title="Portada">
+      <div class="panel">
+        <div class="hero-logo">
+          <div class="brand-mark" style="width:64px;height:64px;"><span>IN</span></div>
+          <div class="wordmark">
+            <strong>INGEMOL S.A.</strong>
+            <span>Ingeniería del medio ambiente</span>
+          </div>
+        </div>
+        <div class="eyebrow">Presentación para directivos</div>
+        <h2>Cómo convertir la trayectoria de <span class="highlight">INGEMOL</span> en liderazgo visible en Google y motores con IA</h2>
+        <p class="lead">Esta propuesta ordena el diagnóstico, la oportunidad, el plan de acción y el modelo de trabajo recomendado para fortalecer la marca, mejorar posicionamiento orgánico y aumentar la probabilidad de aparición en respuestas de plataformas como ChatGPT, Gemini y Grok.</p>
+        <div class="grid-4">
+          <div class="metric"><div class="num">49</div><p>Años de trayectoria comunicados por la marca.</p></div>
+          <div class="metric"><div class="num">20+</div><p>Países donde la empresa declara presencia y proyectos.</p></div>
+          <div class="metric"><div class="num">50+</div><p>Industrias atendidas según el sitio.</p></div>
+          <div class="metric"><div class="num">90</div><p>Días para ordenar la base y lanzar la estrategia.</p></div>
+        </div>
+        <div class="footer-nav">
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Contexto">
+      <div class="panel">
+        <div class="eyebrow">1. Punto de partida</div>
+        <h2>INGEMOL ya tiene autoridad real. Lo que falta es <span class="highlight">empaquetarla mejor</span> para el entorno digital.</h2>
+        <div class="grid-3">
+          <div class="card">
+            <strong>Fortaleza actual</strong>
+            <p>Experiencia técnica, clientes relevantes, cobertura internacional, portafolio amplio y una historia empresarial sólida.</p>
+          </div>
+          <div class="card">
+            <strong>Brecha digital</strong>
+            <p>La autoridad existe, pero hoy no está estructurada de la forma más clara para buscadores, directivos compradores y motores de respuesta con IA.</p>
+          </div>
+          <div class="card">
+            <strong>Resultado esperado</strong>
+            <p>Más visibilidad de marca, más tráfico cualificado, más oportunidades comerciales y mayor facilidad para ser citados como fuente confiable.</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="card">
+            <strong>Qué se va a resolver</strong>
+            <ul class="clean">
+              <li>Ordenar la arquitectura del sitio y la narrativa de marca.</li>
+              <li>Priorizar páginas que realmente venden y explican la solución.</li>
+              <li>Transformar proyectos en casos de estudio citables.</li>
+              <li>Reforzar señales de autoridad interna y externa.</li>
+              <li>Activar una estrategia editorial y técnica para SEO e IA.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Qué no se propone</strong>
+            <ul class="clean">
+              <li>No se trata de publicar por volumen.</li>
+              <li>No se trata de tácticas riesgosas o superficiales.</li>
+              <li>No se trata de “salir en IA” sin una base sólida.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Hallazgos">
+      <div class="panel">
+        <div class="eyebrow">2. Hallazgos principales</div>
+        <h2>Los activos existen, pero hoy están menos organizados de lo que el mercado y los algoritmos necesitan.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <strong>Puntos a favor</strong>
+            <ul class="clean">
+              <li>Trayectoria y experiencia demostrable.</li>
+              <li>Clientes de alto valor y proyectos reales.</li>
+              <li>Oferta técnica amplia y postventa.</li>
+              <li>Presencia regional e internacional.</li>
+              <li>Base digital ya montada en WordPress.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Puntos críticos</strong>
+            <ul class="clean">
+              <li>La señal de idioma y región no es ideal para Colombia, LATAM y Centroamérica.</li>
+              <li>La arquitectura mezcla soluciones, industrias, proyectos y contenido sin jerarquía óptima.</li>
+              <li>Mucho valor técnico no está convertido en páginas que posicionen.</li>
+              <li>Los proyectos no están explotados como casos de estudio de alta autoridad.</li>
+              <li>La marca puede proyectar más liderazgo técnico del que hoy transmite.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-like">
+          <div class="row header">
+            <div>Hallazgo</div>
+            <div>Impacto en negocio</div>
+            <div>Prioridad</div>
+          </div>
+          <div class="row">
+            <div>Home principal orientada a inglés</div>
+            <div>Debilita foco regional y relevancia local</div>
+            <div><span class="pill high">Alta</span></div>
+          </div>
+          <div class="row">
+            <div>Falta de páginas por industria y problema</div>
+            <div>Se pierden búsquedas con intención técnica y comercial</div>
+            <div><span class="pill high">Alta</span></div>
+          </div>
+          <div class="row">
+            <div>Casos y proyectos subaprovechados</div>
+            <div>Menor autoridad, menor persuasión y menor citabilidad</div>
+            <div><span class="pill high">Alta</span></div>
+          </div>
+          <div class="row">
+            <div>Señales de marca dispersas</div>
+            <div>La empresa se entiende, pero no con toda su potencia</div>
+            <div><span class="pill mid">Media</span></div>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Competencia">
+      <div class="panel">
+        <div class="eyebrow">3. Lectura competitiva</div>
+        <h2>La competencia ya muestra patrones claros de comunicación digital que conviene adaptar.</h2>
+        <div class="grid-4">
+          <div class="card">
+            <strong>DyF</strong>
+            <p>Comunica portafolio industrial local de forma directa y con lógica comercial más sencilla.</p>
+          </div>
+          <div class="card">
+            <strong>Nederman</strong>
+            <p>Proyecta liderazgo global, profundidad técnica y ecosistema de soluciones y soporte.</p>
+          </div>
+          <div class="card">
+            <strong>Baghouse</strong>
+            <p>Capitaliza muy bien servicios, repuestos, mantenimiento y contenido útil.</p>
+          </div>
+          <div class="card">
+            <strong>Simatek</strong>
+            <p>Destaca por segmentación por industrias, documentación y comunicación de cifras.</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="card">
+            <strong>Qué debe tomar INGEMOL como inspiración</strong>
+            <ul class="clean">
+              <li>Páginas por industria con beneficios, aplicaciones y casos.</li>
+              <li>Centro de recursos y documentación técnica.</li>
+              <li>Mayor protagonismo de postventa, repuestos y servicios.</li>
+              <li>Uso más claro de cifras, prueba social y presencia regional.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Qué puede hacer mejor que la competencia</strong>
+            <ul class="clean">
+              <li>Combinar ingeniería, fabricación, montaje y postventa bajo una sola narrativa.</li>
+              <li>Convertir su historial de proyectos en una biblioteca de casos de alto valor.</li>
+              <li>Posicionarse como referente regional, no solo como proveedor técnico.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Objetivo">
+      <div class="panel">
+        <div class="eyebrow">4. Objetivo estratégico</div>
+        <h2>Meta propuesta: convertir a INGEMOL en una <span class="highlight">marca industrial más visible, confiable y referenciable</span>.</h2>
+        <div class="grid-3">
+          <div class="metric">
+            <div class="num">SEO</div>
+            <p>Subir visibilidad orgánica en búsquedas de marca, solución, industria y problema.</p>
+          </div>
+          <div class="metric">
+            <div class="num">Marca</div>
+            <p>Fortalecer percepción de liderazgo técnico frente a directivos, compradores e ingenieros.</p>
+          </div>
+          <div class="metric">
+            <div class="num">IA</div>
+            <p>Aumentar la probabilidad de ser citados por motores que sintetizan información.</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top:22px;">
+          <strong>En términos simples</strong>
+          <p>Que cuando una empresa busque soluciones como control de emisiones, filtros de mangas, transporte neumático, mantenimiento industrial o proyectos por industria, encuentre a INGEMOL más fácil, entienda mejor lo que hace y confíe más rápido en su capacidad.</p>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Plan 90 días">
+      <div class="panel">
+        <div class="eyebrow">5. Plan de 90 días</div>
+        <h2>Hoja de ruta de principio a final</h2>
+        <div class="timeline">
+          <div class="step">
+            <div class="tag">Días 1–15</div>
+            <h4>Auditoría y base</h4>
+            <p>Auditoría SEO, marca, arquitectura, idioma, indexación, experiencia y benchmark competitivo.</p>
+          </div>
+          <div class="step">
+            <div class="tag">Días 16–35</div>
+            <h4>Correcciones críticas</h4>
+            <p>Ordenar estructura, resolver quick wins técnicos, definir páginas prioritarias y mensajes clave.</p>
+          </div>
+          <div class="step">
+            <div class="tag">Días 36–60</div>
+            <h4>Activos que posicionan</h4>
+            <p>Construir páginas por solución e industria, casos de estudio y centro de recursos inicial.</p>
+          </div>
+          <div class="step">
+            <div class="tag">Días 61–90</div>
+            <h4>Autoridad y expansión</h4>
+            <p>Activar distribución, LinkedIn, YouTube, reputación externa, optimización continua y medición.</p>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Acciones">
+      <div class="panel">
+        <div class="eyebrow">6. Acciones prioritarias</div>
+        <h2>Las primeras decisiones que más impacto pueden generar</h2>
+        <div class="grid-2">
+          <div class="card">
+            <strong>Frente técnico y de estructura</strong>
+            <ul class="clean">
+              <li>Definir español como eje principal para la región objetivo.</li>
+              <li>Reordenar navegación y arquitectura por soluciones, industrias, servicios y casos.</li>
+              <li>Implementar mejoras de SEO on-page, breadcrumbs y datos estructurados.</li>
+              <li>Revisar rastreo e indexación para buscadores y motores de IA.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Frente comercial y de contenidos</strong>
+            <ul class="clean">
+              <li>Crear páginas “money” por solución prioritaria.</li>
+              <li>Desarrollar páginas por industria con aplicación real.</li>
+              <li>Convertir proyectos en casos de estudio con enfoque comercial.</li>
+              <li>Lanzar biblioteca técnica con preguntas reales del mercado.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="card"><strong>Quick win</strong><p>Resolver idioma, región y estructura del sitio.</p></div>
+          <div class="card"><strong>Quick win</strong><p>Publicar 5 páginas de solución y 4 de industria.</p></div>
+          <div class="card"><strong>Quick win</strong><p>Transformar 5 proyectos en casos con narrativa de valor.</p></div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Equipo">
+      <div class="panel">
+        <div class="eyebrow">7. Modelo de trabajo</div>
+        <h2>Quién debe liderar esto dentro y fuera de INGEMOL</h2>
+        <div class="table-like">
+          <div class="row header">
+            <div>Rol</div>
+            <div>Perfil recomendado</div>
+            <div>Responsabilidad principal</div>
+          </div>
+          <div class="row">
+            <div>Sponsor interno</div>
+            <div>Gerencia General o Dirección Comercial</div>
+            <div>Priorizar, aprobar y facilitar decisiones</div>
+          </div>
+          <div class="row">
+            <div>Líder técnico</div>
+            <div>Dirección de Ingeniería o Proyectos</div>
+            <div>Validar contenido, diferenciales y casos</div>
+          </div>
+          <div class="row">
+            <div>Owner comercial/marketing</div>
+            <div>Responsable interno de marca o ventas</div>
+            <div>Coordinar agenda, aprobaciones y enfoque de negocio</div>
+          </div>
+          <div class="row">
+            <div>Agencia externa</div>
+            <div>SEO, contenido, WordPress y estrategia digital</div>
+            <div>Diagnóstico, ejecución, optimización y reporting</div>
+          </div>
+        </div>
+        <div class="split">
+          <div class="card">
+            <strong>Qué debe hacer el equipo interno</strong>
+            <ul class="clean">
+              <li>Definir prioridades por negocio.</li>
+              <li>Aportar conocimiento técnico y comercial.</li>
+              <li>Compartir casos, fotos, cifras y credenciales.</li>
+              <li>Asignar voceros y validar mensajes.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Qué debe hacer la agencia</strong>
+            <ul class="clean">
+              <li>Traducir conocimiento en estrategia digital clara.</li>
+              <li>Ejecutar arquitectura, contenido y optimización.</li>
+              <li>Medir resultados y ajustar cada sprint.</li>
+              <li>Elevar la percepción de marca en digital.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="KPIs">
+      <div class="panel">
+        <div class="eyebrow">8. Cómo se medirá</div>
+        <h2>Indicadores ejecutivos para evaluar avance real</h2>
+        <div class="grid-4">
+          <div class="card"><strong>Visibilidad</strong><p>Impresiones orgánicas, posiciones, páginas indexadas útiles y keywords top 10.</p></div>
+          <div class="card"><strong>Marca</strong><p>Búsquedas de marca, menciones externas, crecimiento de LinkedIn y recordación digital.</p></div>
+          <div class="card"><strong>Negocio</strong><p>Leads orgánicos, formularios, contactos comerciales y páginas que asisten venta.</p></div>
+          <div class="card"><strong>Autoridad</strong><p>Casos publicados, recursos citables, señales externas y apariciones en entornos de IA.</p></div>
+        </div>
+        <div class="card" style="margin-top:22px;">
+          <strong>Importante</strong>
+          <p>El objetivo no será medir “volumen de publicaciones”, sino avance en autoridad de marca, calidad de tráfico y potencial comercial generado por el activo digital.</p>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Propuesta">
+      <div class="panel">
+        <div class="eyebrow">9. Propuesta de la agencia</div>
+        <h2>Propuesta de acompañamiento para ejecutar esta estrategia</h2>
+        <div class="proposal">
+          <div class="card">
+            <strong>Alcance sugerido</strong>
+            <ul class="clean">
+              <li>Auditoría integral de marca, sitio y competencia.</li>
+              <li>Plan de acción 90 días con prioridades claras.</li>
+              <li>Optimización técnica en WordPress.</li>
+              <li>Arquitectura SEO por soluciones, industrias y casos.</li>
+              <li>Redacción y publicación de activos prioritarios.</li>
+              <li>Lineamiento para LinkedIn, YouTube y reputación digital.</li>
+              <li>Seguimiento ejecutivo mensual con KPIs.</li>
+            </ul>
+            <div class="table-like" style="margin-top:20px;">
+              <div class="row header">
+                <div>Fase</div>
+                <div>Entregable</div>
+                <div>Resultado esperado</div>
+              </div>
+              <div class="row">
+                <div>Fase 1</div>
+                <div>Auditoría + hoja de ruta</div>
+                <div>Claridad total sobre prioridades y quick wins</div>
+              </div>
+              <div class="row">
+                <div>Fase 2</div>
+                <div>Implementación base</div>
+                <div>Mejor estructura y mayor entendimiento del sitio</div>
+              </div>
+              <div class="row">
+                <div>Fase 3</div>
+                <div>Contenido y autoridad</div>
+                <div>Más visibilidad, más confianza y mejor conversión</div>
+              </div>
+            </div>
+          </div>
+          <div class="price-box">
+            <h3>Próximo paso recomendado</h3>
+            <p>Autorizar una primera etapa de diagnóstico y ordenamiento estratégico para construir la base correcta antes de escalar producción y posicionamiento.</p>
+            <ul class="clean" style="margin-top:16px;">
+              <li>Kickoff ejecutivo</li>
+              <li>Acceso a información clave</li>
+              <li>Definición de prioridades comerciales</li>
+              <li>Inicio del sprint 1</li>
+            </ul>
+            <p style="margin-top:18px;font-weight:700;">Espacio editable para propuesta comercial:</p>
+            <p>• Honorarios mensuales<br>• Duración mínima sugerida<br>• Equipo asignado<br>• SLA y ritmo de entregables</p>
+            <a class="cta" href="#">Aprobación de fase inicial</a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button data-next>Finalizar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Cierre">
+      <div class="panel">
+        <div class="eyebrow">10. Cierre</div>
+        <h2>INGEMOL no necesita reinventarse. Necesita <span class="highlight">ordenar y amplificar</span> lo que ya ha construido.</h2>
+        <p class="lead">La oportunidad es alta porque la empresa ya posee trayectoria, capacidad técnica, casos reales y presencia regional. Con una estructura correcta y una ejecución disciplinada, ese valor puede convertirse en liderazgo digital medible.</p>
+        <div class="grid-3">
+          <div class="card"><strong>Decisión 1</strong><p>Aprobar auditoría y plan detallado de implementación.</p></div>
+          <div class="card"><strong>Decisión 2</strong><p>Definir sponsor interno y equipo de validación.</p></div>
+          <div class="card"><strong>Decisión 3</strong><p>Iniciar sprint de 90 días con foco en quick wins y activos clave.</p></div>
+        </div>
+        <div class="footer-nav">
+          <button data-prev>Anterior</button>
+          <div class="slide-count"></div>
+          <button onclick="goToSlide(0)">Volver al inicio</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const nav = document.getElementById('nav');
+    let current = 0;
+
+    slides.forEach((slide, index) => {
+      const button = document.createElement('button');
+      button.textContent = slide.dataset.title;
+      button.addEventListener('click', () => goToSlide(index));
+      nav.appendChild(button);
+    });
+
+    function updateUI() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === current);
+      });
+
+      const buttons = Array.from(nav.querySelectorAll('button'));
+      buttons.forEach((btn, index) => btn.classList.toggle('active', index === current));
+
+      document.querySelectorAll('.slide-count').forEach(el => {
+        el.textContent = `Slide ${current + 1} de ${slides.length}`;
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToSlide(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      updateUI();
+    }
+
+    function nextSlide() { goToSlide(current + 1); }
+    function prevSlide() { goToSlide(current - 1); }
+
+    document.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', nextSlide));
+    document.querySelectorAll('[data-prev]').forEach(btn => btn.addEventListener('click', prevSlide));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'Home') goToSlide(0);
+      if (e.key === 'End') goToSlide(slides.length - 1);
+    });
+
+    updateUI();
+    window.goToSlide = goToSlide;
+  </script>
+</body>
+</html>
